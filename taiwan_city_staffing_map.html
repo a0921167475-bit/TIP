@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>台灣縣市家庭類任用人數統計與分布地圖</title>
+  <title>台灣縣市任用人數統計與分布地圖</title>
   <style>
     body { margin: 0; font-family: "Microsoft JhengHei", "Noto Sans TC", Arial, sans-serif; background: #F8FAFC; color: #111827; }
     .page { display: grid; grid-template-columns: minmax(0, 1fr) 360px; min-height: 100vh; }
     .map-panel { position: relative; background: #fff; overflow: hidden; padding: 24px; }
-    h1 { margin: 0; font-size: 28px; }
-    .subtitle { margin: 6px 0 12px; color: #4B5563; }
-    svg { display: block; width: 100%; height: calc(100vh - 104px); cursor: grab; }
+    h1 { margin: 0; font-size: 28px; line-height: 1.25; }
+    .subtitle { margin: 6px 0 12px; color: #4B5563; line-height: 1.55; }
+    svg { display: block; width: 100%; height: calc(100vh - 150px); cursor: grab; }
     svg.dragging { cursor: grabbing; }
     .county { vector-effect: non-scaling-stroke; transition: opacity .12s, stroke-width .12s; }
     .county:hover, .county:focus { stroke: #111827; stroke-width: 2.8; outline: none; }
     .label { font-size: 12px; fill: #111827; paint-order: stroke; stroke: rgba(255,255,255,.85); stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
-    .controls { position: absolute; top: 92px; left: 40px; display: flex; gap: 8px; z-index: 1; }
+    .controls { display: flex; gap: 8px; margin: 0 0 12px; flex-wrap: wrap; }
     button { border: 1px solid #CBD5E1; background: #fff; border-radius: 6px; padding: 8px 11px; cursor: pointer; }
     aside { background: #fff; border-left: 1px solid #E5E7EB; padding: 24px; overflow: auto; }
     aside h2 { margin: 0 0 6px; font-size: 22px; }
@@ -28,7 +28,11 @@
     .tooltip { position: absolute; pointer-events: none; transform: translate(12px, 12px); background: rgba(17,24,39,.92); color: #fff; border-radius: 6px; padding: 8px 10px; font-size: 14px; opacity: 0; white-space: nowrap; }
     @media (max-width: 900px) {
       .page { grid-template-columns: 1fr; }
-      svg { height: 70vh; }
+      .map-panel { padding: 20px 16px; }
+      h1 { font-size: 28px; }
+      .subtitle { margin-bottom: 10px; }
+      .controls { position: static; margin-bottom: 10px; }
+      svg { height: 66vh; min-height: 560px; }
       aside { border-left: 0; border-top: 1px solid #E5E7EB; }
     }
   </style>
@@ -37,7 +41,7 @@
   <main class="page">
     <section class="map-panel">
       <h1>台灣縣市家庭類任用人數分布地圖</h1>
-      <p class="subtitle">每個縣市使用不同顏色；總計任用人數 2,757 人。滾輪可縮放，拖曳可平移。</p>
+      <p class="subtitle">資料日期：115年6月10日；每個縣市使用不同顏色；總計任用人數 2,757 人。滾輪可縮放，拖曳可平移。</p>
       <div class="controls">
         <button id="zoom-in" type="button">放大</button>
         <button id="zoom-out" type="button">縮小</button>
@@ -53,7 +57,7 @@
       <div id="tooltip" class="tooltip"></div>
     </section>
     <aside>
-      <h2>家庭類任用人數統計表</h2>
+      <h2>縣市任用人數統計表</h2>
       <p>表格顏色與左側地圖縣市顏色一致。</p>
       <table>
         <thead><tr><th>縣市</th><th>任用人數</th></tr></thead>
